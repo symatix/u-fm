@@ -1,3 +1,4 @@
+import activePlaylist from './store/activePlaylist';
 import playlists from './store/playlists';
 import artists from './store/artists';
 import albums from './store/albums';
@@ -14,7 +15,7 @@ export default {
 	tracks,
 	artists,
 	info,
-	playing:null,
-	activePlaylist:[],		
+	activePlaylist,
+	playing:null,		
 }
 

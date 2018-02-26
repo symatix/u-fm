@@ -3,15 +3,12 @@ import { createMuiTheme } from 'material-ui/styles';
 import {
 	grey300,
 	blueGrey,
-	red,
 	teal,
-	yellow,
 	white,
 	darkBlack,
 	fullBlack
 } from 'material-ui/colors';
 import { fade } from 'material-ui/styles/colorManipulator';
-import primary from './primary';
 import spacing from 'material-ui/styles/spacing';
 
 const theme = createMuiTheme({

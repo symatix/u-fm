@@ -9,7 +9,7 @@ import Typography from 'material-ui/Typography';
 import AppHeader from '../AppHeader';
 import ListView from '../ListView';
 import Player from '../Player';
-import { getStreams } from '../../../core/init/actions/playingActions';
+import { getStreams, searchResults } from '../../../core/init/actions/playingActions';
 
 function TabContainer({children, dir}) {
   return (
@@ -44,16 +44,21 @@ const styles = theme => ({
 class FullWidthTabs extends React.Component {
   state = {
     value: 0,
-    player:false
+    player:false,
+    search:false
   };
 
   handleChange = (event, value) => {
-    this.setState({value});
+    this.setState({value, search: false});
   };
 
   handleChangeIndex = index => {
     this.setState({value: index});
   };
+
+  activateSearch() {
+    this.setState({search:!this.state.search, value:3});
+  }
 
   closePlayer() {
     this.setState({player:false})
@@ -63,12 +68,12 @@ class FullWidthTabs extends React.Component {
   }
 
   render() {
-    const {classes, theme} = this.props;
+    const {classes, theme, searchResults} = this.props;
     
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default">
-          <AppHeader/>
+          <AppHeader db={this.props.tracks} search={searchResults} activate={this.activateSearch.bind(this)}/>
           <Tabs
             value={this.state.value}
             onChange={this.handleChange}
@@ -92,7 +97,7 @@ class FullWidthTabs extends React.Component {
           <TabContainer dir={theme.direction}><ListView playing={this.props.playing} openPlayer={this.openPlayer.bind(this)} data={this.props.playlists} tracks={this.props.playlists[0].trackList} view="playlist"/></TabContainer>
           <TabContainer dir={theme.direction}><ListView playing={this.props.playing} openPlayer={this.openPlayer.bind(this)} data={this.props.artists} tracks={this.props.artists[0].albums.trackList} view="artists"/></TabContainer>
           <TabContainer dir={theme.direction}><ListView playing={this.props.playing} openPlayer={this.openPlayer.bind(this)} data={this.props.albums} tracks={this.props.albums[0].trackList} view="albums"/></TabContainer>
-          <TabContainer dir={theme.direction}><ListView playing={this.props.playing} openPlayer={this.openPlayer.bind(this)} data={this.props.tracks} tracks={this.props.tracks} view="tracks"/></TabContainer>
+          <TabContainer dir={theme.direction}><ListView playing={this.props.playing} openPlayer={this.openPlayer.bind(this)} data={this.state.search ? this.props.activePlaylist : this.props.tracks} tracks={this.state.search ? this.props.activePlaylist : this.props.tracks} view="tracks"/></TabContainer>
         </SwipeableViews>
         <Player open={this.state.player} getStreams={this.props.getStreams} closePlayer={this.closePlayer.bind(this)} song={this.props.playing} playlist={this.props.activePlaylist} />
       </div>
@@ -111,4 +116,4 @@ function mapStateToProps(store){
   return store;
 }
 
-export default connect(mapStateToProps, {getStreams})(App);
+export default connect(mapStateToProps, {getStreams, searchResults})(App);

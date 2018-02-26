@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Collapse from 'material-ui/transitions/Collapse';
 import Drawer from 'material-ui/Drawer';
-import Card, {CardContent, CardMedia} from 'material-ui/Card';
+import Card, {CardContent} from 'material-ui/Card';
 import ReactPlayer from 'react-player';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
@@ -132,7 +132,7 @@ class TemporaryDrawer extends React.Component {
       .playlist
       .indexOf(song) + 1;
 
-    nextIndex >= playlist.length
+      nextIndex = nextIndex >= playlist.length
       ? nextIndex = 0
       : nextIndex;
     this
@@ -146,7 +146,7 @@ class TemporaryDrawer extends React.Component {
       .playlist
       .indexOf(song) - 1;
 
-    prevIndex < 0
+      prevIndex = prevIndex < 0
       ? prevIndex = playlist.length - 1
       : prevIndex;
     this
@@ -249,7 +249,7 @@ class TemporaryDrawer extends React.Component {
   }
 
   render() {
-    const {open, classes} = this.props;
+    const {open} = this.props;
     return (
       <div>
         <Drawer variant="persistent" anchor="bottom" open={open}>
