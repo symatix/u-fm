@@ -30,6 +30,7 @@ class AppHeaderMenu extends React.Component {
     return (
       <div>
         <IconButton
+          color="primary"
           aria-label="More"
           aria-owns={anchorEl ? 'long-menu' : null}
           aria-haspopup="true"

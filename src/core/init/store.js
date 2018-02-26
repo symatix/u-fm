@@ -13,7 +13,8 @@ export default {
 	albums,
 	tracks,
 	artists,
-	info
-		
+	info,
+	playing:null,
+	activePlaylist:[],		
 }
 

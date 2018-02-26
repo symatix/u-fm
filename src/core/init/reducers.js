@@ -5,6 +5,7 @@ import playlistReducer from './reducers/playlistReducer';
 import trackReducer from './reducers/trackReducer';
 import infoReducer from './reducers/infoReducer';
 import playingReducer from './reducers/playingReducer';
+import activePlaylistReducer from './reducers/activePlaylistReducer';
 
 export default combineReducers({
 	artists: artistReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
 	albums:albumReducer,
     tracks:trackReducer,
 	info:infoReducer,
-	playing:playingReducer
+	playing:playingReducer,
+	activePlaylist:activePlaylistReducer
 });

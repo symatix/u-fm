@@ -17,6 +17,10 @@ const styles = {
   menuButton: {
     marginLeft: -12,
     marginRight: 20
+  },
+  logo:{
+    width:'4rem',
+    height:'3rem'
   }
 };
 
@@ -24,10 +28,13 @@ function AppHeader(props) {
   const {classes} = props;
   return (
     <Toolbar>
-      <Typography variant="title" color="inherit" className={classes.flex}>
+      <div className={classes.flex}>
+        <img className={classes.logo} src="/images/yammat-2018-logo-black.png" alt="" />
+      </div>
+      <Typography variant="title" color="primary" className={classes.flex}>
         U.FM
       </Typography>
-      <IconButton className={classes.menuButton} color="inherit" aria-label="Search">
+      <IconButton className={classes.menuButton} color="inherit" aria-label="Search" color="primary" >
         <Search/>
       </IconButton>
         <AppHeaderMenu/>

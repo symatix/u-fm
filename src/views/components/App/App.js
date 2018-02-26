@@ -64,7 +64,7 @@ class FullWidthTabs extends React.Component {
 
   render() {
     const {classes, theme} = this.props;
-    console.log(this.props)
+    
     return (
       <div className={classes.root}>
         <AppBar position="static" color="default">
@@ -89,12 +89,12 @@ class FullWidthTabs extends React.Component {
           : 'x'}
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}>
-          <TabContainer dir={theme.direction}><ListView openPlayer={this.openPlayer.bind(this)} data={this.props.playlists} tracks={this.props.playlists[0].trackList} view="playlist"/></TabContainer>
-          <TabContainer dir={theme.direction}><ListView openPlayer={this.openPlayer.bind(this)} data={this.props.artists} tracks={this.props.artists[0].albums.trackList} view="artists"/></TabContainer>
-          <TabContainer dir={theme.direction}><ListView openPlayer={this.openPlayer.bind(this)} data={this.props.albums} tracks={this.props.albums[0].trackList} view="albums"/></TabContainer>
-          <TabContainer dir={theme.direction}><ListView openPlayer={this.openPlayer.bind(this)} data={this.props.tracks} tracks={this.props.tracks} view="tracks"/></TabContainer>
+          <TabContainer dir={theme.direction}><ListView playing={this.props.playing} openPlayer={this.openPlayer.bind(this)} data={this.props.playlists} tracks={this.props.playlists[0].trackList} view="playlist"/></TabContainer>
+          <TabContainer dir={theme.direction}><ListView playing={this.props.playing} openPlayer={this.openPlayer.bind(this)} data={this.props.artists} tracks={this.props.artists[0].albums.trackList} view="artists"/></TabContainer>
+          <TabContainer dir={theme.direction}><ListView playing={this.props.playing} openPlayer={this.openPlayer.bind(this)} data={this.props.albums} tracks={this.props.albums[0].trackList} view="albums"/></TabContainer>
+          <TabContainer dir={theme.direction}><ListView playing={this.props.playing} openPlayer={this.openPlayer.bind(this)} data={this.props.tracks} tracks={this.props.tracks} view="tracks"/></TabContainer>
         </SwipeableViews>
-        <Player open={this.state.player} getStreams={this.props.getStreams} closePlayer={this.closePlayer.bind(this)} song={this.props.playing} />
+        <Player open={this.state.player} getStreams={this.props.getStreams} closePlayer={this.closePlayer.bind(this)} song={this.props.playing} playlist={this.props.activePlaylist} />
       </div>
     );
   }
