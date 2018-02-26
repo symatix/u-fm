@@ -31,33 +31,37 @@ class AppHeaderSearch extends Component {
         query: '',
         active: false
     }
+
     handleChange = event => {
         this.setState({query: event.target.value})
         this.activateSearch(event.target.value);
-        
     }
+
     activateSearch = query => {
         var regexp = new RegExp(query, "gi");
-        
-        let newPlaylist = _.filter(this.props.db, (obj) => regexp.test(obj.name) || regexp.test(obj.artist));
+        let newPlaylist = _.filter(this.props.db, 
+            (obj) => regexp.test(obj.name) || regexp.test(obj.artist));
         newPlaylist = _.uniqWith(newPlaylist, _.isEqual);
 
         this.props.search(newPlaylist);
     }
+
     onFocusSearch = event => {
         this.props.activate();
         this.setState({active: true});
     }
+
     onBlurSearch = event => {
         this.setState({active: false, query:''});
     }
+    
     render() {
         const {classes} = this.props;
         return (
             <Paper
                 className={this.state.active
-                ? classes.searchBoxActive
-                : classes.searchBox}
+                    ? classes.searchBoxActive
+                    : classes.searchBox}
                 onClick={this.onFocusSearch}>
                 <FormControl fullWidth className={classes.formControl}>
                     <Input
@@ -68,7 +72,11 @@ class AppHeaderSearch extends Component {
                         value={this.state.query}
                         onChange={this.handleChange}
                         onBlur={this.onBlurSearch}
-                        endAdornment={<InputAdornment position = "end" style = {{margin:'auto 5px'}}> <Search/> </InputAdornment>}/>
+                        endAdornment={
+                            <InputAdornment position = "end" style = {{margin:'auto 5px'}}>
+                                <Search/>
+                            </InputAdornment>
+                        }/>
                 </FormControl>
             </Paper>
         );

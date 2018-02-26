@@ -1,4 +1,4 @@
-import { GET_PLAYLIST, SET_SEARCH_RESULTS } from '../../constants';
+import { GET_PLAYLIST, SET_SEARCH_RESULTS } from '../constants';
 
 
 export default function (state = [], action) {

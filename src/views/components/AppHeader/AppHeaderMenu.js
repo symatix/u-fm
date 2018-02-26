@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
@@ -11,7 +11,7 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-class AppHeaderMenu extends React.Component {
+class AppHeaderMenu extends Component {
   state = {
     anchorEl: null,
   };
@@ -24,6 +24,16 @@ class AppHeaderMenu extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  renderOptions = () => {
+    return options.map(option => {
+      return (
+        <MenuItem key={option} onClick={this.handleClose}>
+          {option}
+        </MenuItem>
+      )
+    })
+  }
+
   render() {
     const { anchorEl } = this.state;
 
@@ -34,8 +44,7 @@ class AppHeaderMenu extends React.Component {
           aria-label="More"
           aria-owns={anchorEl ? 'long-menu' : null}
           aria-haspopup="true"
-          onClick={this.handleClick}
-        >
+          onClick={this.handleClick}>
           <MoreVertIcon />
         </IconButton>
         <Menu
@@ -47,14 +56,9 @@ class AppHeaderMenu extends React.Component {
             style: {
               maxHeight: ITEM_HEIGHT * 4.5,
               width: 200,
-            },
-          }}
-        >
-          {options.map(option => (
-            <MenuItem key={option} selected={option === 'Pyxis'} onClick={this.handleClose}>
-              {option}
-            </MenuItem>
-          ))}
+            }
+          }}>
+          {this.renderOptions()}
         </Menu>
       </div>
     );

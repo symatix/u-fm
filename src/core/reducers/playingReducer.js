@@ -1,4 +1,4 @@
-import { GET_SONG } from '../../constants';
+import { GET_SONG } from '../constants';
 
 export default function (state = null, action) {
 
