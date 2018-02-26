@@ -28,7 +28,7 @@ class TemporaryDrawer extends React.Component {
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.stopPlay === true){
-      this.setState({playing:false});
+      return this.setState({playing:false});
     }
   }
 
