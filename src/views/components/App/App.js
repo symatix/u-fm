@@ -79,7 +79,7 @@ class AppMain extends React.Component {
             ? 'x-reverse'
             : 'x'}
           index={this.state.value}
-          onChangeIndex={this.handleChangeIndex}
+          onChangeIndex={this.handleChangeIndex.bind(this)}
           playing={this.props.playing} 
           openPlayer={this.openPlayer.bind(this)} 
           dir={theme.direction}

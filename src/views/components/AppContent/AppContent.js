@@ -22,7 +22,7 @@ TabContainer.propTypes = {
 class AppContent extends React.Component {
 
   handleChangeIndex = index => {
-    this.props.handleChangeIndex(index);
+    this.props.onChangeIndex(index);
   };
 
   renderContent(){
