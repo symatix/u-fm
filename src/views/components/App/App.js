@@ -32,7 +32,7 @@ class AppMain extends React.Component {
   };
 
   activateSearch() {
-    this.setState({search:!this.state.search, value:3});
+    this.setState({search:!this.state.search, value:4});
   }
 
   closePlayer() {
@@ -99,7 +99,6 @@ class AppMain extends React.Component {
           closePlayer={this.closePlayer.bind(this)} 
           song={this.props.playing} 
           playlist={this.props.activePlaylist} 
-          type={contentData.view}
         />
 
       </div>
