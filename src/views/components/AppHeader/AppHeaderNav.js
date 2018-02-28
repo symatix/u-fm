@@ -19,7 +19,7 @@ class AppHeaderNav extends React.Component {
         indicatorColor="primary"
         textColor="primary"
         scrollable
-        scrollButtons="auto"
+        scrollButtons="on"
         fullWidth>
         <Tab label="Playlist"/>
         <Tab label="Streams"/>
