@@ -50,6 +50,10 @@ class AppMain extends React.Component {
       data: this.props.playlists,
       tracks: this.props.playlists[0].trackList
     },{
+      view:"streams",
+      data: this.props.streams,
+      tracks: this.props.streams
+    },{
       view:"artists",
       data: this.props.artists,
       tracks: this.props.artists[0].albums.trackList
@@ -95,6 +99,7 @@ class AppMain extends React.Component {
           closePlayer={this.closePlayer.bind(this)} 
           song={this.props.playing} 
           playlist={this.props.activePlaylist} 
+          type={contentData.view}
         />
 
       </div>

@@ -34,7 +34,7 @@ class Player extends React.Component {
   renderPlayer() {
     if (this.props.song) {
       const {classes, song} = this.props;
-
+      
       return (
         <div>
           <Grid className={classes.container} container spacing={8}>

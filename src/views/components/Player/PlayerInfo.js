@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
@@ -15,19 +16,22 @@ const styles = theme => ({
 
 class PlayerInfo extends React.Component {
 
-    findInfo = () => {
-        return this.props.db.find(({artist}) => artist === this.props.playing.artist);
+    getArtist = () => {
+        return _.find(this.props.db, ['artist', this.props.playing.artist]);
     }
     getAlbumData = () => {
-        const album = this.props.db.map(artist => {
-            return artist.albums.find(({name}) => name === this.props.playing.album);
-        })
-        return album[0];
+        if (this.props.playing.type === 'stream') {
+            return null;
+        }
+        const artistData = _.find(this.props.db, ['artist', this.props.playing.artist])
+
+        return _.find(artistData.albums, ['name', this.props.playing.album]);
     }
 
     render() {
         const {classes, playing} = this.props;
 
+        const artist = this.getArtist();
         return (
                 <Grid container spacing={8}>
                     <Grid item xs={5} sm={3} md={2} lg={1}>
@@ -41,11 +45,11 @@ class PlayerInfo extends React.Component {
 
                     </Grid>
                     <Grid item xs={12} sm={12} md={7} lg={8}>
-
-                        <PlayerInfoDetails
-                            artist={playing.artist}
-                            members={this.findInfo().members}
-                            {...this.getAlbumData()} />
+                {this.props.playing.type !== 'stream' ? <PlayerInfoDetails artist={playing.artist} members={artist 
+                        ? artist.members
+                        : null} {...this.getAlbumData()} />
+                :''}
+                        
 
                     </Grid>
                 </Grid>

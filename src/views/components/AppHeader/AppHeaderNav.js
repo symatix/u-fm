@@ -22,6 +22,7 @@ class AppHeaderNav extends React.Component {
         scrollButtons="auto"
         fullWidth>
         <Tab label="Playlist"/>
+        <Tab label="Streams"/>
         <Tab label="Artists"/>
         <Tab label="Albums"/>
         <Tab label="Tracks"/>

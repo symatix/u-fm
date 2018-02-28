@@ -1,4 +1,14 @@
 export default [{
+    artist:"Ocelot",
+    history:"Ocelot vectorSelector is the next step in planetary transcendence; oozing with otherworldly sounds, sublime harmonics, and powerful rhythms.",
+    image:"image/ocelot.jpg",
+    members:["Aaron Peacock"],
+    albums:[{
+        name:"Let's Dance",
+        published:"10 May 2010",
+        summary:"Initial release was under the name Let's Dance. Later it was renamed to 'You Live In A Zoo'."
+    }]
+    },{
     artist:"Shpongle",
     history:"Shpongle is a psychedelic electronic project from England that formed in 1996. The group includes Simon Posford (a.k.a. Hallucinogen) and Raja Ram (one of three in The Infinity Project). The duo are considered to be one of the progenitors of the psybient genre - a genre combining world music with psychedelic trance and ambient. Their musical style combines traditional music from all over the globe and vocals with contemporary western synthesizer-based psychedelic music. When asked to describe Shpongle's music, Posford has responded that it is 'like nothing you've ever heard before.'",
     image:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Shpongle_in_Moscow.jpg/300px-Shpongle_in_Moscow.jpg",
