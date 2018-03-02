@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+import { connect } from'react-redux';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import {ListItem, ListItemText, ListItemIcon} from 'material-ui/List';
 import PlayArrowIcon from 'material-ui-icons/PlayArrow';
+
+import * as actions from '../../../core/actions/dbActions';
 
 const styles = theme => ({
     listItem: {
@@ -23,6 +26,8 @@ class ListItemCustom extends Component {
     handleButton = (tracks) => {
         const { data } = this.props;
         if (data.url) {
+            this.props.getAlbumInfo(data.artist, data.album);
+            this.props.getArtistInfo(data.artist);
             return this.props.playSong(data, tracks, true);
         }
         return this.props.toggleSubList();
@@ -64,4 +69,4 @@ class ListItemCustom extends Component {
 ListItemCustom.propTypes = {
     classes: PropTypes.object.isRequired
 };
-export default withStyles(styles)(ListItemCustom);
+export default connect(null, actions)(withStyles(styles)(ListItemCustom));

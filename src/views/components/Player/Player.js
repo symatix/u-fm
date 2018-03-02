@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Collapse from 'material-ui/transitions/Collapse';
@@ -20,6 +21,8 @@ class Player extends React.Component {
     expanded: true,
   }
 
+  
+
   handleCollapse = () => {
     this.setState({
       expanded: !this.state.expanded
@@ -33,7 +36,7 @@ class Player extends React.Component {
 
   renderPlayer() {
     if (this.props.song) {
-      const {classes, song} = this.props;
+      const {classes, song, activeAlbum, activeArtist} = this.props;
       
       return (
         <div>
@@ -59,8 +62,9 @@ class Player extends React.Component {
 
               <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                 <PlayerInfo 
-                  playing={song} 
-                  db={this.props.db} />
+                  albumInfo={activeAlbum.album}
+                  artistInfo={activeArtist.artist}
+                  playing={song} />
               </Collapse>
             
             </Grid>
@@ -86,4 +90,8 @@ Player.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Player);
+function mapStateToProps({activeAlbum, activeArtist}){
+  return { activeAlbum, activeArtist }
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(Player));

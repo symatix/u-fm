@@ -15,21 +15,35 @@ const styles = theme => ({
 });
 
 class PlayerInfoDetails extends React.Component {
+    renderPublished(){
+        const { classes, published } = this.props;
+        if (published) {
+            return (
+                <Typography variant="body2" className={classes.infoText}>
+                    <strong>PUBLISHED</strong> |&nbsp;
+                    {published ? published : 'No data present'}
+                </Typography>
+            )
+        }
+    }
+
+    renderSummary(){
+        const { classes, summary } = this.props;
+        if(summary){
+            return(
+                <Typography variant="body2" className={classes.infoText}>
+                    <strong>ALBUM SUMMARY</strong> |&nbsp;
+                    {summary.substring(0, summary.indexOf(" <a href")) + '.'}
+                </Typography>
+            )
+        }
+    }
 
     render() {
-        const {classes, artist, members, published, summary } = this.props;
-
         return (
-            <div className={classes.basic}>
-                <Typography variant="subheading" component="h2">
-                    {summary}
-                </Typography>
-                <Typography variant="body2" className={classes.infoText}>
-                    PUBLISHED | <strong>{published}</strong>
-                </Typography>
-                <Typography variant="body2" className={classes.infoText}>
-                    {artist.toUpperCase()} | <strong>{members.toString()}</strong>
-                </Typography>
+            <div className={this.props.classes.basic}>
+                {this.renderPublished()}
+                {this.renderSummary()}
             </div>
         );
     }

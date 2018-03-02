@@ -15,44 +15,42 @@ const styles = theme => ({
 });
 
 class PlayerInfo extends React.Component {
+    renderInfo(){
+        const {classes, playing, albumInfo, artistInfo} = this.props;
 
-    getArtist = () => {
-        return _.find(this.props.db, ['artist', this.props.playing.artist]);
-    }
-    getAlbumData = () => {
-        if (this.props.playing.type === 'stream') {
-            return null;
+        if (!_.isEmpty(albumInfo) && !_.isEmpty(artistInfo)){
+            return (
+                <Grid container spacing={8}>
+                    <Grid item xs={5} sm={3} md={2} lg={1}>
+                        {albumInfo.image[2]['#text'] 
+                        ? <img className={classes.cover} src={albumInfo.image[2]['#text']} alt={playing.name}/>       
+                        : ''}
+                    </Grid>
+
+                    <Grid item xs={7} sm={9} md={3} lg={3}>
+                        <PlayerInfoBasic {...playing} />
+                    </Grid>
+
+                    <Grid item xs={12} sm={12} md={7} lg={8}>
+                        {this.props.playing.type !== 'stream' 
+                        ? <PlayerInfoDetails 
+                            artist={artistInfo.name} 
+                            published={albumInfo.wiki ? albumInfo.wiki.published : null} 
+                            summary={albumInfo.wiki ? albumInfo.wiki.summary : null}
+                             />
+                        :''}
+                    </Grid>
+
+                </Grid>
+            )
         }
-        const artistData = _.find(this.props.db, ['artist', this.props.playing.artist])
-
-        return _.find(artistData.albums, ['name', this.props.playing.album]);
     }
 
     render() {
-        const {classes, playing} = this.props;
-
-        const artist = this.getArtist();
         return (
-                <Grid container spacing={8}>
-                    <Grid item xs={5} sm={3} md={2} lg={1}>
-
-                        <img className={classes.cover} src={playing.image} alt={playing.name}/>
-
-                    </Grid>
-                    <Grid item xs={7} sm={9} md={3} lg={3}>
-
-                        <PlayerInfoBasic {...playing} />
-
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={7} lg={8}>
-                {this.props.playing.type !== 'stream' ? <PlayerInfoDetails artist={playing.artist} members={artist 
-                        ? artist.members
-                        : null} {...this.getAlbumData()} />
-                :''}
-                        
-
-                    </Grid>
-                </Grid>
+            <div>
+                {this.renderInfo()}
+            </div>
         );
     }
 }

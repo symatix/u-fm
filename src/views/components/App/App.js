@@ -5,8 +5,7 @@ import {withStyles} from 'material-ui/styles';
 import AppHeader from '../AppHeader';
 import AppContent from '../AppContent';
 import Player from '../Player';
-import { getStreams, getPlaylist } from '../../../core/actions/playingActions';
-import { searchResults } from '../../../core/actions/searchActions';
+import * as actions from '../../../core/actions';
 
 const styles = theme => ({
   root: {
@@ -93,7 +92,6 @@ class AppMain extends React.Component {
         />
 
         <Player 
-          db={this.props.info}
           open={this.state.player} 
           getStreams={this.props.getStreams} 
           closePlayer={this.closePlayer.bind(this)} 
@@ -117,4 +115,4 @@ function mapStateToProps(store){
   return store;
 }
 
-export default connect(mapStateToProps, {getStreams, getPlaylist, searchResults})(App);
+export default connect(mapStateToProps, actions)(App);

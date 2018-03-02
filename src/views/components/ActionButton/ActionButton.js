@@ -29,9 +29,10 @@ const styles = theme => ({
 });
 
 function ActionButton(props) {
+    const {classes, position} = props;
 
-    const position = () => {
-        switch (props.position){
+    const btnPosition = () => {
+        switch (position){
             case 'right':
             return `${classes.wrapper} ${classes.right}`;
             case 'center':
@@ -40,9 +41,8 @@ function ActionButton(props) {
             return;
         }
     }
-    const {classes, right} = props;
     return (
-        <div className={position ? position() : classes.wrapper}>
+        <div className={position ? btnPosition() : classes.wrapper}>
             <Button color="primary" className={classes.button}>
                 Add
             </Button>
