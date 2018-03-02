@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import Typography from 'material-ui/Typography';
 import ListView from '../ListView';
+import ActionButton from '../ActionButton';
 
 function TabContainer({children, dir}) {
   return (
@@ -31,6 +32,7 @@ class AppContent extends React.Component {
     return this.props.data.map((content, i) => {
       return (
         <TabContainer key={`${i}-${content.name}`} dir={dir}>
+          <ActionButton position='right' text='ADD' />
           <ListView 
             playing={playing} 
             openPlayer={openPlayer} 
